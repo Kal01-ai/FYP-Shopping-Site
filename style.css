@@ -2,12 +2,20 @@ body {
     background-color: rgb(27, 27, 27);
 }
 
-.customImg {
+.customImgStock {
     color: white;
 }
 
-.customImg img {
+.customImgStock img {
     max-width: 50%;
+}
+
+.customImgLogo {
+    color: white;
+}
+
+.customImgLogo img {
+    max-width: 25%;
 }
 
 @media (min-width: 992px) {
