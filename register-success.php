@@ -19,7 +19,7 @@
                 <div class="card-body p-md-5">
                   <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                      
+
                       <!--PHP here-->
                       <?php 
                       $servername="localhost";
@@ -53,7 +53,7 @@
                       VALUES('$name','$email','$password')";
 
                       if ($conn->query($sql)===TRUE) {
-                          echo "Registration Successful! <br>";
+                          echo "Registration Successful <br>";
                           header("Refresh:5; url=login.html");
                       } else {
                     echo "Error: " .$sql. "<br>" . $conn->error;
