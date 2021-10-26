@@ -45,16 +45,16 @@
 
                       <?php
                       if($password != $cPassword) {
-                        echo "Password do not match";
-                        header("Refresh:5; url=register.html");
+                        echo "Password do not match!";
+                        header("Refresh:3; url=register.html");
                       } else {
 
                       $sql="INSERT INTO customer(cust_name, cust_email, cust_passwd)
                       VALUES('$name','$email','$password')";
 
                       if ($conn->query($sql)===TRUE) {
-                          echo "Registration Successful <br>";
-                          header("Refresh:5; url=login.html");
+                          echo "Registration Successful! <br>";
+                          header("Refresh:3; url=login.html");
                       } else {
                     echo "Error: " .$sql. "<br>" . $conn->error;
                       }
