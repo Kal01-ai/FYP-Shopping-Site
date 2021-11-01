@@ -1,3 +1,55 @@
+<?php  
+
+    session_start();
+    $product_id = array();
+    //session_destroy();
+
+    //Check if add to cart button has been submitted
+    if(filter_input(INPUT_POST, 'add-to-cart')) {
+        if(isset($_SESSION['shopping_cart'])) {
+            //Keep track how many products are in the shopping cart
+            $count = count($_SESSION['shopping_cart']);
+
+            //Create sequential array to product id
+            $product_id = array_column($_SESSION['shopping_cart'], 'id');
+
+            if(!in_array(filter_input(INPUT_GET, 'id'), $product_id)) {
+                $_SESSION['shopping_cart'][$count] = array
+                (
+                    'id' => filter_input(INPUT_GET, 'id'),
+                    'name' => filter_input(INPUT_POST, 'name'),
+                    'price' => filter_input(INPUT_POST, 'price'),
+                    'quantity' => filter_input(INPUT_POST, 'quantity')
+                );
+            }
+            else { //Product already exist, increase quantity
+                for($i = 0; $i < count($product_id); $i++) {
+                    if($product_id[$i] == filter_input(INPUT_GET, 'id')) {
+                        //Add quantity in existing array
+                        $_SESSION['shopping_cart'][$i]['quantity'] += filter_input(INPUT_POST, 'quantity');
+                    }
+                }
+            }
+        } else {
+            //If shopping cart does not exist, create first product with array key 0
+            $_SESSION['shopping_cart'][0] = array
+            (
+                'id' => filter_input(INPUT_GET, 'id'),
+                'name' => filter_input(INPUT_POST, 'name'),
+                'price' => filter_input(INPUT_POST, 'price'),
+                'quantity' => filter_input(INPUT_POST, 'quantity')
+            );
+        }
+    }
+pre_r($_SESSION);
+
+function pre_r($array) {
+    echo '<pre>';
+    print_r($array);
+    echo '</pre>';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
