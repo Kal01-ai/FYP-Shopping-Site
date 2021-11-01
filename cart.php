@@ -11,6 +11,7 @@
 </head>
 <body>
     <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
     <!--PHP Here-->
     <?php 
     
@@ -19,31 +20,27 @@
         $result = mysqli_query($connect, $query);
 
         if($result) :
-            $i=0;
-            echo '<table><tr>';
             if(mysqli_num_rows($result)>0) :
                 while($product = mysqli_fetch_assoc($result)) :
                     //print_r($product);
-                    ?>
+                ?>
 
-                    <td>
-                        <div class="product">
-                            <form method="post" action="cart.php?action=add&id=<?php echo $product['id']; ?>">
-                                <div class="row row-cols-1 row-cols-md-3 g-4"></div>
-                            </form>
+                    <div class="col">
+                        <div class="card">
+                            <img src="<?php echo $product['image']; ?>" class="card-img-top" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $product['name']; ?></h5>
+                                <h4 class="card-text"><?php echo $product['price']; ?></h4>
+                            </div>
                         </div>
-                    </td>
+                    </div>
 
                 <?php
-                    $i++;
-                    if($i==5) {
-                        echo '</tr><tr>';
-                    }
                 endwhile;
-                    echo '</tr></table>';
             endif;
         endif;
     ?>
+    </div>
     </div>
 
     <!--JavaScript-->
