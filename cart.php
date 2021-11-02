@@ -41,7 +41,7 @@
             );
         }
     }
-pre_r($_SESSION);
+//pre_r($_SESSION);
 
 function pre_r($array) {
     echo '<pre>';
@@ -124,6 +124,62 @@ function pre_r($array) {
         endif;
     ?>
     </div>
+
+        <div style="clear:both"></div>
+        <br>
+        <div class="table-responsive">
+            <table class="table">
+                <tr><th colspan="5"><h3>Order Details</h3></th></tr>
+                <tr>
+                  <th width="40%">Product Name</th>
+                  <th width="10%">Quantity</th>
+                  <th width="20%">Price</th>
+                  <th width="15%">Total</th>
+                  <th width="5%">Action</th>
+                </tr>
+                <?php 
+                
+                  if(!empty($_SESSION['shopping_cart'])):
+
+                    $total = 0;
+
+                    foreach($_SESSION['shopping_cart'] as $key => $product):
+                ?>
+                <tr>
+                  <td><?php echo $product['name']; ?></td>
+                  <td><?php echo $product['quantity']; ?></td>
+                  <td>RM <?php echo $product['price']; ?></td>
+                  <td>RM <?php echo number_format($product['quantity'] * $product['price'], 2); ?></td>
+                  <td>
+                    <a href="cart.php?action=delete&id=<?php echo $product['id']; ?>">
+                      <div class="btn btn-danger">Remove</div>
+                    </a>
+                  </td>
+                </tr>
+                <?php 
+                    $total = $total + ($product['quantity'] * $product['price']);
+                    endforeach;
+                ?>
+                <tr>
+                  <td colspan="3" align="right">Total Price</td>
+                  <td align="right">RM <?php echo number_format($total, 2); ?></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <!--Show checkout only if shopping cart is not empty-->
+                  <td colspan="5">
+                    <?php 
+                      if(isset($_SESSION['shopping_cart'])):
+                      if(count($_SESSION['shopping_cart']) > 0):
+                    ?>
+                    <a href="#" class="d-grid gap-2 btn btn-primary">Checkout</a>
+                    <?php endif; endif; ?>
+                  </td>
+                </tr>
+                <?php endif; ?>
+            </table>
+        </div>
+
     </div>
 
     <!--Footer-->
