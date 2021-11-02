@@ -41,6 +41,19 @@
             );
         }
     }
+
+    if(filter_input(INPUT_GET, 'action') == 'delete') {
+      //Loop through all products in the shopping cart until it matches with GET id variable
+      foreach($_SESSION['shopping_cart'] as $key => $product) {
+        if($product['id'] == filter_input(INPUT_GET, 'id')) {
+          //If GET id matches, remove product from shopping cart
+          unset($_SESSION['shopping_cart'][$key]);
+        }
+      }
+      //Reset session array keys to match with product id array
+      $_SESSION['shopping_cart'] = array_values($_SESSION['shopping_cart']);
+    }
+
 //pre_r($_SESSION);
 
 function pre_r($array) {
@@ -84,6 +97,13 @@ function pre_r($array) {
               </div>
             </div>
           </nav>
+      </div>
+
+      <!--Title-->
+      <div class="container-fluid text-center mt-5">
+        <div class="container pt-5">
+            <h1 style="color: white;">Checkout Page</h1>
+        </div>
       </div>
 
     <!--Shopping cart page-->

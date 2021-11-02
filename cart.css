@@ -3,6 +3,10 @@ body {
     color: white;
 }
 
+.card {
+    height: 50%;
+}
+
 .card-body {
     background-color: #2e2e2e;
     color: white;
