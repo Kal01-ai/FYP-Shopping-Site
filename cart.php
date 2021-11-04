@@ -1,4 +1,5 @@
 <?php  
+    include_once 'config.php';
 
     session_start();
     $product_id = array();
@@ -110,8 +111,7 @@ function pre_r($array) {
     <div class="container mt-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
     <!--PHP Here-->
-    <?php 
-    
+    <?php
         $connect = mysqli_connect('localhost', 'root', '', 'kerepekdb');
         $query = 'SELECT * FROM product ORDER BY id ASC';
         $result = mysqli_query($connect, $query);
@@ -161,6 +161,8 @@ function pre_r($array) {
                 
                   if(!empty($_SESSION['shopping_cart'])):
 
+                    $output_paypal = '';
+                    $total_items = 0;
                     $total = 0;
 
                     foreach($_SESSION['shopping_cart'] as $key => $product):
@@ -178,6 +180,17 @@ function pre_r($array) {
                 </tr>
                 <?php 
                     $total = $total + ($product['quantity'] * $product['price']);
+                    $ppname = htmlspecialchars($product['name']);
+                    $ppquantity = $product['quantity'];
+                    $ppprice = $product['price'];
+
+                    $total_items ++;
+
+                    $output_paypal .= <<<EOM
+                    <input type="hidden" name="item_name_{$total_items}" value="$ppname">
+                    <input type="hidden" name="quantity_{$total_items}" value="$ppquantity">
+                    <input type="hidden" name="amount_{$total_items}" value="$ppprice">
+                    EOM;
                     endforeach;
                 ?>
                 <tr>
@@ -192,7 +205,29 @@ function pre_r($array) {
                       if(isset($_SESSION['shopping_cart'])):
                       if(count($_SESSION['shopping_cart']) > 0):
                     ?>
-                    <a href="#" class="d-grid gap-2 btn btn-primary">Checkout</a>
+
+                      <form target="_self" action="<?php echo PAYPAL_URL; ?>" method="post">
+                        <!-- Identify your business so that you can collect the payments. -->
+                        <input type="hidden" name="business" value="<?php echo PAYPAL_ID; ?>">
+
+                        <!-- Specify a PayPal Shopping Cart Add to Cart button. -->
+                        <input type="hidden" name="cmd" value="_cart">
+
+                        <!-- Specify details about the item that buyers will purchase. -->
+                        <?php echo $output_paypal; ?>
+                        <input type="hidden" name="upload" value="1">
+                        <input type="hidden" name="currency_code" value="<?php echo PAYPAL_CURRENCY; ?>">
+
+                        <!-- Specify URLs -->
+                        <input type="hidden" name="shopping_url" value="<?php echo CONTINUE_SHOPPING_URL; ?>">
+                        <input type="hidden" name="cancel_return" value="<?php echo PAYPAL_CANCEL_URL; ?>">
+                        <input type="hidden" name="return" value="<?php echo PAYPAL_RETURN_URL; ?>">
+
+                        <div class="d-grid gap-2">
+                          <button class="btn btn-primary" type="submit">Checkout</button>
+                        </div>
+                      </form>
+
                     <?php endif; endif; ?>
                   </td>
                 </tr>
