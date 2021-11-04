@@ -111,8 +111,7 @@ function pre_r($array) {
     <div class="container mt-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
     <!--PHP Here-->
-    <?php 
-    
+    <?php
         $connect = mysqli_connect('localhost', 'root', '', 'kerepekdb');
         $query = 'SELECT * FROM product ORDER BY id ASC';
         $result = mysqli_query($connect, $query);
@@ -162,6 +161,8 @@ function pre_r($array) {
                 
                   if(!empty($_SESSION['shopping_cart'])):
 
+                    $output_paypal = '';
+                    $total_items = 0;
                     $total = 0;
 
                     foreach($_SESSION['shopping_cart'] as $key => $product):
@@ -179,6 +180,17 @@ function pre_r($array) {
                 </tr>
                 <?php 
                     $total = $total + ($product['quantity'] * $product['price']);
+                    $ppname = htmlspecialchars($product['name']);
+                    $ppquantity = $product['quantity'];
+                    $ppprice = $product['price'];
+
+                    $total_items ++;
+
+                    $output_paypal .= <<<EOM
+                    <input type="hidden" name="item_name_{$total_items}" value="$ppname">
+                    <input type="hidden" name="quantity_{$total_items}" value="$ppquantity">
+                    <input type="hidden" name="amount_{$total_items}" value="$ppprice">
+                    EOM;
                     endforeach;
                 ?>
                 <tr>
@@ -200,12 +212,10 @@ function pre_r($array) {
 
                         <!-- Specify a PayPal Shopping Cart Add to Cart button. -->
                         <input type="hidden" name="cmd" value="_cart">
-                        <input type="hidden" name="add" value="<?php echo $product['quantity']; ?>">
 
                         <!-- Specify details about the item that buyers will purchase. -->
-                        <input type="hidden" name="item_name" value="<?php echo $product['name']; ?>">
-                        <input type="hidden" name="item_number" value="<?php echo $product['id']; ?>">
-                        <input type="hidden" name="amount" value="<?php echo $product['price']; ?>">
+                        <?php echo $output_paypal; ?>
+                        <input type="hidden" name="upload" value="1">
                         <input type="hidden" name="currency_code" value="<?php echo PAYPAL_CURRENCY; ?>">
 
                         <!-- Specify URLs -->
