@@ -1,4 +1,5 @@
 <?php  
+    include_once 'config.php';
 
     session_start();
     $product_id = array();
@@ -192,7 +193,31 @@ function pre_r($array) {
                       if(isset($_SESSION['shopping_cart'])):
                       if(count($_SESSION['shopping_cart']) > 0):
                     ?>
-                    <a href="#" class="d-grid gap-2 btn btn-primary">Checkout</a>
+
+                      <form target="_self" action="<?php echo PAYPAL_URL; ?>" method="post">
+                        <!-- Identify your business so that you can collect the payments. -->
+                        <input type="hidden" name="business" value="<?php echo PAYPAL_ID; ?>">
+
+                        <!-- Specify a PayPal Shopping Cart Add to Cart button. -->
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="add" value="<?php echo $product['quantity']; ?>">
+
+                        <!-- Specify details about the item that buyers will purchase. -->
+                        <input type="hidden" name="item_name" value="<?php echo $product['name']; ?>">
+                        <input type="hidden" name="item_number" value="<?php echo $product['id']; ?>">
+                        <input type="hidden" name="amount" value="<?php echo $product['price']; ?>">
+                        <input type="hidden" name="currency_code" value="<?php echo PAYPAL_CURRENCY; ?>">
+
+                        <!-- Specify URLs -->
+                        <input type="hidden" name="shopping_url" value="<?php echo CONTINUE_SHOPPING_URL; ?>">
+                        <input type="hidden" name="cancel_return" value="<?php echo PAYPAL_CANCEL_URL; ?>">
+                        <input type="hidden" name="return" value="<?php echo PAYPAL_RETURN_URL; ?>">
+
+                        <div class="d-grid gap-2">
+                          <button class="btn btn-primary" type="submit">Checkout</button>
+                        </div>
+                      </form>
+
                     <?php endif; endif; ?>
                   </td>
                 </tr>
