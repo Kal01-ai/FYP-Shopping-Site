@@ -1,2 +1,2 @@
-# fyp-website
+# Online Shopping Website
 Final Year Project
