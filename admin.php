@@ -43,13 +43,26 @@
 
         <?php
            if($result->num_rows>0) {
+             session_start();
+             $_SESSION['admin'] = $email;
+
              echo "Login Successful!";
-             header("Refresh:3; url=index.html");
+             header("Refresh:3; url=admin_panel.php");
            } else {
                  echo "Error! Invalid username or password!";
                  header("Refresh:3; url=login.html");
            }
            ?>
+
+          <?php
+            if(isset($_GET['logout'])) {
+              session_start();
+              unset($_SESSION['admin']);
+              session_destroy();
+              header("Location:admin.html");
+              exit;
+            }
+          ?>
 
         </h1>
         
