@@ -47,10 +47,10 @@
              $_SESSION['admin'] = $email;
 
              echo "Login Successful!";
-             header("Refresh:3; url=admin_panel.php");
+             header("Refresh:2; url=admin_panel.php");
            } else {
                  echo "Error! Invalid username or password!";
-                 header("Refresh:3; url=login.html");
+                 header("Refresh:2; url=admin.html");
            }
            ?>
 
