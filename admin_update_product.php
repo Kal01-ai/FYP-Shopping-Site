@@ -65,8 +65,16 @@
           <div class="d-flex flex-row align-items-center mb-4">
             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
             <div class="form-outline flex-fill mb-0">
-            <label class="form-label customText" for="price">(Update) Description to Manager</label>
-            <textarea class="form-control customInput" rows="5" id="comment" name="description" required></textarea>
+            <label class="form-label customText" for="pDesc">Product Description</label>
+            <textarea class="form-control customInput" rows="5" id="pDesc" name="pDescription" required><?php echo $product['product_desc']; ?></textarea>
+            </div>
+          </div>
+
+          <div class="d-flex flex-row align-items-center mb-4">
+            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+            <div class="form-outline flex-fill mb-0">
+            <label class="form-label customText" for="desc">Description to Manager</label>
+            <textarea class="form-control customInput" rows="5" id="desc" name="description" required></textarea>
             </div>
           </div>
 
@@ -96,14 +104,16 @@
           $image = 'img/' . $_FILES['file']['name'];
           date_default_timezone_set("Asia/Kuala_Lumpur");
           $date_time = date('d-m-Y H:i:s');
+          $action = 'Update Product';
         
           $admin_email = $_SESSION['admin'];
           $pName=$_POST['productName'];
           $price=$_POST['price'];
+          $pDesc=$_POST['pDescription'];
           $desc=$_POST['description'];
         
-        $sql="INSERT INTO activity_product(admin_email, admin_description, date_time)
-        VALUES('$admin_email','$desc','$date_time')";
+        $sql="INSERT INTO activity_product(admin_email, admin_description, date_time, action_performed)
+        VALUES('$admin_email','$desc','$date_time','$action')";
         
         if ($conn->query($sql)===TRUE) {
             //header("Refresh:0; url=contact-us.html");
@@ -115,7 +125,7 @@
             $sql="UPDATE product SET image = $image WHERE id = $id";
         }
 
-        $sql="UPDATE product SET name = '$pName', price = '$price' WHERE id = $id";
+        $sql="UPDATE product SET name = '$pName', price = '$price', product_desc = '$pDesc' WHERE id = $id";
         
         if ($conn->query($sql)===TRUE) {
             header("Refresh:0; url=admin_panel.php");

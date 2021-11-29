@@ -51,8 +51,16 @@
           <div class="d-flex flex-row align-items-center mb-4">
             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
             <div class="form-outline flex-fill mb-0">
+            <label class="form-label customText" for="price">Product Description</label>
+            <textarea class="form-control customInput" rows="5" id="pDesc" name="pDescription" required></textarea>
+            </div>
+          </div>
+
+          <div class="d-flex flex-row align-items-center mb-4">
+            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+            <div class="form-outline flex-fill mb-0">
             <label class="form-label customText" for="price">Description to Manager</label>
-            <textarea class="form-control customInput" rows="5" id="comment" name="description" required></textarea>
+            <textarea class="form-control customInput" rows="5" id="desc" name="description" required></textarea>
             </div>
           </div>
 
@@ -82,14 +90,16 @@
           $image = 'img/' . $_FILES['file']['name'];
           date_default_timezone_set("Asia/Kuala_Lumpur");
           $date_time = date('d-m-Y H:i:s');
+          $action = 'Create Product';
         
           $admin_email = $_SESSION['admin'];
           $pName=$_POST['productName'];
           $price=$_POST['price'];
+          $pDesc=$_POST['pDescription'];
           $desc=$_POST['description'];
         
-        $sql="INSERT INTO activity_product(admin_email, admin_description, date_time)
-        VALUES('$admin_email','$desc','$date_time')";
+        $sql="INSERT INTO activity_product(admin_email, admin_description, date_time, action_performed)
+        VALUES('$admin_email','$desc','$date_time','$action')";
         
         if ($conn->query($sql)===TRUE) {
             //header("Refresh:0; url=contact-us.html");
@@ -97,8 +107,8 @@
             echo "Error: " .$sql. "<br>" . $conn->error;
             }
 
-        $sql="INSERT INTO product(name, image, price)
-        VALUES('$pName','$image','$price')";
+        $sql="INSERT INTO product(name, image, price, product_desc)
+        VALUES('$pName','$image','$price','$pDesc')";
         
         if ($conn->query($sql)===TRUE) {
             header("Refresh:0; url=admin_panel.php");

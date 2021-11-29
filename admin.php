@@ -59,7 +59,7 @@
               session_start();
               unset($_SESSION['admin']);
               session_destroy();
-              header("Location:admin.html");
+              header("Location:admin_login.php");
               exit;
             }
           ?>

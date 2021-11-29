@@ -10,6 +10,14 @@
     <title>Login</title>
 </head>
 <body class="text-center">
+
+    <?php
+        session_start();
+        if(isset($_SESSION['admin'])) {
+            header("Location:admin_panel.php");
+        }
+    ?>
+
     <!--Login form-->
     <main class="form-signin">
         <form action="admin.php" method="post">

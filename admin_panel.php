@@ -24,6 +24,7 @@
             <h2>Welcome, Admin</h2>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="index.html" class="btn btn-secondary">Go to main website</a>
             <a href="admin.php?logout=true" class="btn btn-danger">Log Out</a>
         </div>
 
@@ -35,8 +36,9 @@
             <table class="table">
                 <tr><th colspan="5"><h3>Product Details</h3></th></tr>
                 <tr>
-                  <th width="20%">Product Name</th>
-                  <th width="20%">Price</th>
+                  <th width="10%">Product Name</th>
+                  <th width="10%">Price</th>
+                  <th width="20%">Product Description</th>
                   <th width="15%">Image</th>
                   <th width="15%">Action</th>
                 </tr>
@@ -56,12 +58,15 @@
                 <tr>
                   <td><?php echo $product['name']; ?></td>
                   <td>RM <?php echo $product['price']; ?></td>
+                  <td><?php echo $product['product_desc']; ?></td>
                   <td><img style="width:100%;" src="<?php echo $product['image']; ?>" alt="Product Image"></td>
                   <td>
+                    <div class="d-grid gap-2 d-md-flex">
                     <form action="admin_update_product.php?updateid=<?php echo $id ?>" method="post">
                         <button class="btn btn-success" type="submit" name="Update">Update</button>
                     </form>
                     <button class="btn btn-danger" type="submit" name="Delete">Delete</button>
+                    </div>
                   </td>
                 </tr>
 
