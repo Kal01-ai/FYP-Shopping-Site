@@ -129,7 +129,11 @@ function pre_r($array) {
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $product['name']; ?></h5>
                                 <h4 class="card-text">RM <?php echo $product['price']; ?></h4>
-                                <input type="text" name="quantity" class="form-control" value="1">
+
+                                <input type="number" onkeyup="if(this.value<0) {this.value = this.value * -1}
+                                else if(this.value==0) {this.value = this.value + 1}" 
+                                name="quantity" class="form-control" min="1" value="1">
+
                                 <input type="hidden" name="name" value="<?php echo $product['name']; ?>">
                                 <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
                                 <input type="submit" name="add-to-cart" class="btn btn-info mt-3" value="Add to Cart">
