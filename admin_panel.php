@@ -62,10 +62,12 @@
                   <td><img style="width:100%;" src="<?php echo $product['image']; ?>" alt="Product Image"></td>
                   <td>
                     <div class="d-grid gap-2 d-md-flex">
-                    <form action="admin_update_product.php?updateid=<?php echo $id ?>" method="post">
+                    <form action="admin_update_product.php?updateid=<?php echo $id; ?>" method="post">
                         <button class="btn btn-success" type="submit" name="Update">Update</button>
                     </form>
-                    <button class="btn btn-danger" type="submit" name="Delete">Delete</button>
+                    <form action="admin_delete_product.php?deleteid=<?php echo $id; ?>" method="post">
+                        <button class="btn btn-danger" type="submit" name="Delete">Delete</button>
+                    </form>
                     </div>
                   </td>
                 </tr>
