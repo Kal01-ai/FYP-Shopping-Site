@@ -39,7 +39,7 @@
            $result=$conn->query($sql);
            ?>
 
-        <h1 class="h3 mb-3 fw-normal" style="color: white;">
+        <h1 class="h3 mb-3 fw-normal" style="color: black;">
 
         <?php
            if($result->num_rows>0) {
@@ -50,7 +50,7 @@
              header("Refresh:2; url=admin_panel.php");
            } else {
                  echo "Error! Invalid username or password!";
-                 header("Refresh:2; url=admin.html");
+                 header("Refresh:2; url=admin_login.php");
            }
            ?>
 

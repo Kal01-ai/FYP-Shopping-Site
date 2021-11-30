@@ -22,7 +22,7 @@
     <main class="form-signin">
         <form action="admin.php" method="post">
           <img class="mb-4" src="img/kerepek-r-us-logo.png" alt="Logo" width="140" height="140">
-          <h1 class="h3 mb-3 fw-normal" style="color: white;">Admin Log In</h1>
+          <h1 class="h3 mb-3 fw-normal" style="color: black;">Admin Log In</h1>
       
           <div class="form-floating">
             <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
