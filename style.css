@@ -2,6 +2,16 @@ body {
     background-color: #FED008;
 }
 
+.title {
+    color: black;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.title-content {
+    color: black;
+    font-family: "Sofia", sans-serif;
+}
+
 .customImgStock {
     color: white;
 }

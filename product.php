@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Permanent+Marker">
     <link href="style.css" rel="stylesheet">
     <title>Our Products</title>
 </head>
@@ -46,55 +47,43 @@
       <!--Product List-->
       <div class="container-fluid text-center mt-5">
         <div class="container pt-5">
-            <h1 style="color: white;">Our Products</h1>
+            <h1 class="title">Our Products</h1>
         </div>
         <div class="container pt-5">
             <div class="row row-cols-1 row-cols-md-2 g-4">
+
+        <?php
+        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
+        $query = 'SELECT * FROM product ORDER BY id ASC';
+        $result = mysqli_query($connect, $query);
+
+        if($result) :
+            if(mysqli_num_rows($result)>0) :
+                while($product = mysqli_fetch_assoc($result)) :
+
+        ?>
+
                 <div class="card customCard mb-3" style="max-width: 540px; background-color: rgb(27, 27, 27);">
                     <div class="row g-0">
                       <div class="col-md-4">
-                        <img src="img/pisang.jpg" class="img-fluid rounded-start" alt="Kerepek Pisang">
+                        <img src="<?php echo $product['image']; ?>" class="img-fluid rounded-start" alt="Kerepek">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
-                          <h5 class="card-title">Kerepek Pisang</h5>
-                          <p class="card-text">Thin and crunchy chips consisting of banana. A good source of fibre and vitamin. Can be eaten as a snack for the whole family.</p>
-                          <p class="card-text">Available package: 500g</p>
-                          <a href="cart.php" class="btn btn-info">More Details</a>
+                          <h5 class="card-title"><?php echo $product['name']; ?></h5>
+                          <p class="card-text"><?php echo $product['product_desc']; ?></p>
+                          <a href="cart.php" class="btn btn-info">Buy Now</a>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="card customCard mb-3" style="max-width: 540px; background-color: rgb(27, 27, 27);">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="img/bawang.jpg" class="img-fluid rounded-start" alt="Kerepek Bawang">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">Kerepek Bawang</h5>
-                          <p class="card-text">Crunchy and spiral shaped chips. Low in calories but high in vitamins and minerals. Tasty onion taste when eating.</p>
-                          <p class="card-text">Available package: 450g</p>
-                          <a href="cart.php" class="btn btn-info">More Details</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card customCard mb-3" style="max-width: 540px; background-color: rgb(27, 27, 27);">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="img/ubi-pedas.jpg" class="img-fluid rounded-start" alt="Kerepek Ubi Pedas">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title">Kerepek Ubi Pedas</h5>
-                          <p class="card-text">Wet and crunchy red-coloured chips. Medium spiciness. Mixed with red sauce which makes it tastier. Less oil and fulfilling.</p>
-                          <p class="card-text">Available package: 450g</p>
-                          <a href="cart.php" class="btn btn-info">More Details</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+
+        <?php 
+            endwhile;
+          endif;
+        endif;
+        ?>
+
               </div>
         </div>
     </div>
