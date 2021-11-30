@@ -72,6 +72,7 @@ function pre_r($array) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Permanent+Marker">
     <link href="cart.css" rel="stylesheet">
     <title>Checkout</title>
 </head>
@@ -89,7 +90,7 @@ function pre_r($array) {
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link" href="product.html">Go back</a>
+                    <a class="nav-link" href="product.php">Go back</a>
                   </li>
                 </ul>
                 <div style="color: white;" class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -103,7 +104,7 @@ function pre_r($array) {
       <!--Title-->
       <div class="container-fluid text-center mt-5">
         <div class="container pt-5">
-            <h1 style="color: white;">Checkout Page</h1>
+            <h1 class="cart-title">Checkout Page</h1>
         </div>
       </div>
 
