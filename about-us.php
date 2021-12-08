@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Permanent+Marker">
     <link href="style.css" rel="stylesheet">
-    <title>Our Products</title>
+    <title>About Us</title>
 </head>
 <body>
     <?php
@@ -34,10 +34,10 @@
                     <a class="nav-link" href="index.php">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="about-us.php">About Us</a>
+                    <a class="nav-link active" aria-current="page" href="about-us.php">About Us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="product.php">Our Products</a>
+                    <a class="nav-link" href="product.php">Our Products</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="contact-us.php">Contact Us</a>
@@ -52,47 +52,15 @@
           </nav>
       </div>
 
-      <!--Product List-->
-      <div class="container-fluid text-center mt-5">
+      <!--Image and Header-->
+      <div class="container-fluid customImgLogo text-center mt-5">
         <div class="container pt-5">
-            <h1 class="title">Our Products</h1>
+            <h1 class="title">About Kerepek R Us</h1>
         </div>
+        <img src="img/kerepek-r-us-logo.png" class="img-fluid" alt="Kerepek Image">
         <div class="container pt-5">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-
-        <?php
-        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
-        $query = 'SELECT * FROM product ORDER BY id ASC';
-        $result = mysqli_query($connect, $query);
-
-        if($result) :
-            if(mysqli_num_rows($result)>0) :
-                while($product = mysqli_fetch_assoc($result)) :
-
-        ?>
-
-                <div class="card customCard mb-3" style="max-width: 540px; background-color: rgb(27, 27, 27);">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="<?php echo $product['image']; ?>" class="img-fluid rounded-start" alt="Kerepek">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title"><?php echo $product['name']; ?></h5>
-                          <p class="card-text"><?php echo $product['product_desc']; ?></p>
-                          <a href="cart.php" class="btn btn-info">Buy Now</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-        <?php 
-            endwhile;
-          endif;
-        endif;
-        ?>
-
-              </div>
+          <p style="color: black;" class="fs-4">Kerepek R Us is a start up business founded by a small group of college students in 2021 based in Selangor. We strive to offer our customers the very best when it comes to local snacks.</p>
+          <p style="color: black;" class="fs-4">Our business initially started from a group project but since then, we've only grown bigger and better! We have expanded out horizons and the variety of our menu.</p>
         </div>
     </div>
 

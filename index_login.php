@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Permanent+Marker">
     <link href="style.css" rel="stylesheet">
-    <title>Our Products</title>
+    <title>Home</title>
 </head>
 <body>
     <?php
         session_start();
-        if(!isset($_SESSION['customer'])) {
-            header("Location:index_login.php");
+        if(isset($_SESSION['customer'])) {
+            header("Location:index.php");
         }
     ?>
 
@@ -22,7 +22,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="index.php">
+              <a class="navbar-brand" href="index_login.php">
                 <img src="img/kerepek-r-us-logo.png" alt="Kerepek R Us Logo" width="80" height="80">
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,70 +31,71 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link" href="index.php">Home</a>
+                    <a class="nav-link active" aria-current="page" href="index_login.php">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="about-us.php">About Us</a>
+                    <a class="nav-link" href="about-us_login.php">About Us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="product.php">Our Products</a>
+                    <a class="nav-link" href="product_login.php">Our Products</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contact-us.php">Contact Us</a>
+                    <a class="nav-link" href="contact-us_login.php">Contact Us</a>
                   </li>
                 </ul>
-                <div style="color: white;" class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  Welcome, customer!
-                  <a href="login-success.php?logout=true" class="btn btn-danger">Log Out</a>
-                  </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a class="btn btn-primary me-md-2" href="register.php" role="button">Register</a>
+                    <a class="btn btn-secondary" href="login.php" role="button">Login</a>
+                </div>
               </div>
             </div>
           </nav>
       </div>
 
-      <!--Product List-->
-      <div class="container-fluid text-center mt-5">
-        <div class="container pt-5">
-            <h1 class="title">Our Products</h1>
-        </div>
-        <div class="container pt-5">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
+      <!--Image and Welcome Message-->
+      <div class="container-fluid customImgStock text-center mt-5">
+          <div class="container pt-5">
+              <h1 class="title">Welcome to Kerepek R Us</h1>
+              <p class="fs-4 title-content">Snack N' Relax</p>
+          </div>
+          <img src="img/main-img-site.png" class="img-fluid" alt="Kerepek Image">
+      </div>
 
-        <?php
-        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
-        $query = 'SELECT * FROM product ORDER BY id ASC';
-        $result = mysqli_query($connect, $query);
-
-        if($result) :
-            if(mysqli_num_rows($result)>0) :
-                while($product = mysqli_fetch_assoc($result)) :
-
-        ?>
-
-                <div class="card customCard mb-3" style="max-width: 540px; background-color: rgb(27, 27, 27);">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="<?php echo $product['image']; ?>" class="img-fluid rounded-start" alt="Kerepek">
+      <!--Main Contents-->
+      <div class="container pt-3">
+          <div class="row mt-5">
+              <div class="col-sm">
+                  <div class="card customCard">
+                      <div class="card-body">
+                          <h5 class="card-title fw-bold">About Us</h5>
+                          <p class="card-text">Kerepek R Us is a small and independant business that sells kerepek in various flavours.</p>
+                          <p class="card-text">Learn more by clicking the button below.</p>
+                          <a href="about-us_login.php" class="btn btn-info">About Us</a>
                       </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title"><?php echo $product['name']; ?></h5>
-                          <p class="card-text"><?php echo $product['product_desc']; ?></p>
-                          <a href="cart.php" class="btn btn-info">Buy Now</a>
-                        </div>
-                      </div>
-                    </div>
                   </div>
-
-        <?php 
-            endwhile;
-          endif;
-        endif;
-        ?>
-
               </div>
-        </div>
-    </div>
+              <div class="col-sm">
+                <div class="card customCard">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Our Products</h5>
+                        <p class="card-text">Kerepek R Us provides a variety of kerepek flavours such as kerepek pisang, kerepek bawang and kerepek ubi pedas.</p>
+                        <p class="card-text">Learn more by clicking the button below.</p>
+                        <a href="product_login.php" class="btn btn-info">Our Products</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card customCard">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Contact Us</h5>
+                        <p class="card-text">Interested in our business? Need to ask some questions?</p>
+                        <p class="card-text">Learn how to contact us by clicking the button below.</p>
+                        <a href="contact-us_login.php" class="btn btn-info">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
 
       <!--Footer-->
       <div class="container">
