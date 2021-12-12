@@ -121,8 +121,14 @@
             echo "Error: " .$sql. "<br>" . $conn->error;
             }
 
-        if(!empty($_POST['file'])) {
-            $sql="UPDATE product SET image = $image WHERE id = $id";
+        if(!empty($_FILES['file']['name'])) {
+            $sql="UPDATE product SET image = '$image' WHERE id = $id";
+
+            if ($conn->query($sql)===TRUE) {
+              //header("Refresh:0; url=contact-us.html");
+              } else {
+              echo "Error: " .$sql. "<br>" . $conn->error;
+              }
         }
 
         $sql="UPDATE product SET name = '$pName', price = '$price', product_desc = '$pDesc' WHERE id = $id";
@@ -132,6 +138,32 @@
             } else {
             echo "Error: " .$sql. "<br>" . $conn->error;
             }
+
+        //check if uploaded image already exist in img folder.
+        //If img exist, the img will not be duplicated in the folder
+        //but the database will update the img.
+        $target_dir = getcwd() . "\\img\\";
+        $target_file = $target_dir . basename($_FILES["file"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+          //echo "Sorry, file already exists.\n";
+          $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+        //echo "Sorry, your file was not uploaded.\n";
+        // if everything is ok, try to upload file
+        } else {
+          if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+            //echo "The file ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.\n";
+          } else {
+            //echo "Sorry, there was an error uploading your file.\n";
+          }
+        }
       }
     ?>
 

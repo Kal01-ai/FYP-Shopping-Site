@@ -33,6 +33,7 @@
         <div class="d-flex flex-row align-items-center mb-4">
             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
             <div class="form-outline flex-fill mb-0">
+              Warning: If no image is chosen, image will be empty.<br>
               Choose an Image File
               <div class="form-group">
                 <input type="file" class="form-control-file" name="file">
@@ -115,6 +116,32 @@
             } else {
             echo "Error: " .$sql. "<br>" . $conn->error;
             }
+
+        //check if uploaded image already exist in img folder.
+        //If img exist, the img will not be duplicated in the folder
+        //but the database will update the img.
+        $target_dir = getcwd() . "\\img\\";
+        $target_file = $target_dir . basename($_FILES["file"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+        // Check if file already exists
+        if (file_exists($target_file)) {
+          //echo "Sorry, file already exists.\n";
+          $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+        //echo "Sorry, your file was not uploaded.\n";
+        // if everything is ok, try to upload file
+        } else {
+          if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+            //echo "The file ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.\n";
+          } else {
+            //echo "Sorry, there was an error uploading your file.\n";
+          }
+        }
       }
     ?>
 
