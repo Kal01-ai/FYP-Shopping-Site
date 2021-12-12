@@ -77,6 +77,13 @@ function pre_r($array) {
     <title>Checkout</title>
 </head>
 <body>
+    <?php
+        session_start();
+        if(!isset($_SESSION['customer'])) {
+            header("Location:index_login.php");
+        }
+    ?>
+
     <!--Navigation Bar-->
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

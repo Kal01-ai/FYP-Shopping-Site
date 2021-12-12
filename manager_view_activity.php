@@ -14,7 +14,7 @@
     <?php
         session_start();
         if(!isset($_SESSION['manager'])) {
-            header("Location:index.html");
+            header("Location:index.php");
         }
     ?>
 
@@ -43,7 +43,7 @@
 
         <?php
         $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
-        $query = 'SELECT * FROM activity_product ORDER BY id ASC';
+        $query = 'SELECT * FROM activity_admin ORDER BY id ASC';
         $result = mysqli_query($connect, $query);
 
         if($result) :

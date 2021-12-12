@@ -18,55 +18,53 @@
         }
     ?>
 
-    <!--Product Table-->
+    <!--customer Table-->
     <div class="container pt-5">
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <h2>Welcome, Admin</h2>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="index.php" class="btn btn-secondary">Go to main website</a>
+            <a href="admin_panel.php" class="btn btn-secondary">Go back to main panel</a>
             <a href="admin.php?logout=true" class="btn btn-danger">Log Out</a>
         </div>
 
-    <a href="admin_add_product.php" class="btn btn-primary">Create new Product</a>
-    <a href="admin_manage_customer.php" class="btn btn-primary">Manage Customer</a>
     <div style="clear:both"></div>
         <br>
         
         <div class="table-responsive">
             <table class="table">
-                <tr><th colspan="5"><h3>Product Details</h3></th></tr>
+                <tr><th colspan="5"><h3>Customer Details</h3></th></tr>
                 <tr>
-                  <th width="10%">Product Name</th>
-                  <th width="10%">Price</th>
-                  <th width="20%">Product Description</th>
-                  <th width="15%">Image</th>
+                  <th width="10%">Customer Name</th>
+                  <th width="10%">Email</th>
+                  <th width="20%">Password</th>
+                  <th width="15%">Request Password Status</th>
                   <th width="15%">Action</th>
                 </tr>
 
         <?php
         $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
-        $query = 'SELECT * FROM product ORDER BY id ASC';
+        $query = 'SELECT * FROM customer ORDER BY id ASC';
         $result = mysqli_query($connect, $query);
 
         if($result) :
             if(mysqli_num_rows($result)>0) :
-                while($product = mysqli_fetch_assoc($result)) :
-                    //print_r($product);
-                    $id = $product['id'];
+                while($customer = mysqli_fetch_assoc($result)) :
+                    //print_r($customer);
+                    $id = $customer['id'];
         ?>
 
                 <tr>
-                  <td><?php echo $product['name']; ?></td>
-                  <td>RM <?php echo $product['price']; ?></td>
-                  <td><?php echo $product['product_desc']; ?></td>
-                  <td><img style="width:100%;" src="<?php echo $product['image']; ?>" alt="Product Image"></td>
+                  <td><?php echo $customer['cust_name']; ?></td>
+                  <td><?php echo $customer['cust_email']; ?></td>
+                  <td><?php echo $customer['cust_password']; ?></td>
+                  <td><?php echo $customer['change_passwd'] ?></td>
                   <td>
                     <div class="d-grid gap-2 d-md-flex">
-                    <form action="admin_update_product.php?updateid=<?php echo $id; ?>" method="post">
+                    <form action="admin_update_customer.php?updateid=<?php echo $id; ?>" method="post">
                         <button class="btn btn-success" type="submit" name="Update">Update</button>
                     </form>
-                    <form action="admin_delete_product.php?deleteid=<?php echo $id; ?>" method="post">
+                    <form action="admin_delete_customer.php?deleteid=<?php echo $id; ?>" method="post">
                         <button class="btn btn-danger" type="submit" name="Delete">Delete</button>
                     </form>
                     </div>

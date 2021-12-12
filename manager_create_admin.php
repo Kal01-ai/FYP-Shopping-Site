@@ -13,7 +13,7 @@
     <?php
         session_start();
         if(!isset($_SESSION['manager'])) {
-            header("Location:index.html");
+            header("Location:index.php");
         }
     ?>
 

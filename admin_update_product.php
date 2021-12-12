@@ -13,7 +13,7 @@
     <?php
         session_start();
         if(!isset($_SESSION['admin'])) {
-            header("Location:index.html");
+            header("Location:index.php");
         }
 
         $id = $_GET['updateid'];
@@ -112,7 +112,7 @@
           $pDesc=$_POST['pDescription'];
           $desc=$_POST['description'];
         
-        $sql="INSERT INTO activity_product(admin_email, admin_description, date_time, action_performed)
+        $sql="INSERT INTO activity_admin(admin_email, admin_description, date_time, action_performed)
         VALUES('$admin_email','$desc','$date_time','$action')";
         
         if ($conn->query($sql)===TRUE) {
