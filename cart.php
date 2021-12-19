@@ -77,11 +77,18 @@ function pre_r($array) {
     <title>Checkout</title>
 </head>
 <body>
+    <?php
+        session_start();
+        if(!isset($_SESSION['customer'])) {
+            header("Location:index_login.php");
+        }
+    ?>
+
     <!--Navigation Bar-->
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="index.php">
                 <img src="img/kerepek-r-us-logo.png" alt="Kerepek R Us Logo" width="80" height="80">
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,6 +102,7 @@ function pre_r($array) {
                 </ul>
                 <div style="color: white;" class="d-grid gap-2 d-md-flex justify-content-md-end">
                   Welcome, customer!
+                  <a href="login-success.php?logout=true" class="btn btn-danger">Log Out</a>
                   </div>
               </div>
             </div>

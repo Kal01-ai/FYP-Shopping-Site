@@ -10,13 +10,20 @@
     <title>Success</title>
 </head>
 <body>
+    <?php
+        if(isset($_GET['cancel'])) {}
+
+        if(!isset($_GET['cancel'])) {
+            header("Location:index_login.php");
+        }
+    ?>
         <div class="container-fluid customImgStock text-center mt-5">
           <div class="container pt-5 pb-5">
-              <h1>Payment Cancelled!</h1>
+              <h1 style="color: black;">Payment Cancelled!</h1>
           </div>
           <div class="container pt-5">
-              <p>Thank you for shopping with Kerepek R Us!</p>
-              <a href="index.html" class="btn btn-info">Go home</a>
+              <p style="color: black;">Thank you for shopping with Kerepek R Us!</p>
+              <a href="index.php" class="btn btn-primary">Go home</a>
           </div>
         </div>
 

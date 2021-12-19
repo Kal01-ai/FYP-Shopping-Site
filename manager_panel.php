@@ -14,7 +14,7 @@
     <?php
         session_start();
         if(!isset($_SESSION['manager'])) {
-            header("Location:index.html");
+            header("Location:index.php");
         }
     ?>
 
@@ -24,13 +24,14 @@
             <h2>Welcome, Manager</h2>
         </div>
         <div class="pb-5 d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="index.html" class="btn btn-secondary">Go to main website</a>
+            <a href="index.php" class="btn btn-secondary">Go to main website</a>
             <a href="manager.php?logout=true" class="btn btn-danger">Log Out</a>
         </div>
 
     <a href="manager_manage_admin.php" class="btn btn-primary">Manage Admin Account</a>
     <a href="manager_view_activity.php" class="btn btn-primary">View Admin Activity</a>
     <a href="manager_view_customer.php" class="btn btn-primary">View Customer Contact</a>
+    <a href="manager_view_payment.php" class="btn btn-primary">View Payments</a>
     <div style="clear:both"></div>
         <br>
         

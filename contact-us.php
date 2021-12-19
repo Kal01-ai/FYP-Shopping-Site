@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Permanent+Marker">
     <link href="style.css" rel="stylesheet">
-    <title>Our Products</title>
+    <title>Contact Us</title>
 </head>
 <body>
     <?php
@@ -37,10 +36,10 @@
                     <a class="nav-link" href="about-us.php">About Us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="product.php">Our Products</a>
+                    <a class="nav-link" href="product.php">Our Products</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="contact-us.php">Contact Us</a>
+                    <a class="nav-link active" aria-current="page" href="contact-us.php">Contact Us</a>
                   </li>
                 </ul>
                 <div style="color: white;" class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -52,49 +51,52 @@
           </nav>
       </div>
 
-      <!--Product List-->
-      <div class="container-fluid text-center mt-5">
-        <div class="container pt-5">
-            <h1 class="title">Our Products</h1>
-        </div>
-        <div class="container pt-5">
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-
-        <?php
-        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
-        $query = 'SELECT * FROM product ORDER BY id ASC';
-        $result = mysqli_query($connect, $query);
-
-        if($result) :
-            if(mysqli_num_rows($result)>0) :
-                while($product = mysqli_fetch_assoc($result)) :
-
-        ?>
-
-                <div class="card customCard mb-3" style="max-width: 540px; background-color: rgb(27, 27, 27);">
-                    <div class="row g-0">
-                      <div class="col-md-4">
-                        <img src="<?php echo $product['image']; ?>" class="img-fluid rounded-start" alt="Kerepek">
-                      </div>
-                      <div class="col-md-8">
-                        <div class="card-body">
-                          <h5 class="card-title"><?php echo $product['name']; ?></h5>
-                          <p class="card-text"><?php echo $product['product_desc']; ?></p>
-                          <a href="cart.php" class="btn btn-info">Buy Now</a>
-                        </div>
-                      </div>
+      <!--Content-->
+      <div class="container pt-5" style="color: white;">
+        <div class="container contact" style="background-color: #2e2e2e;">
+            <div class="row">
+                <div class="col-md-3" style="background-color: #2e2e2e;">
+                    <div class="contact-info">
+                        <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="Mail Image"/>
+                        <h2>Contact Us</h2>
+                        <h4>We would love to hear from you!</h4>
                     </div>
-                  </div>
-
-        <?php 
-            endwhile;
-          endif;
-        endif;
-        ?>
-
-              </div>
+                </div>
+                <div class="col-md-9">
+                    <form action="contact-success.php" method="post">
+                      <div class="contact-form">
+                        <div class="form-group">
+                          <div class="col-sm-10 pt-2">          
+                            <input type="text" class="form-control customInput" id="fname" placeholder="Enter First Name" name="fname" required>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-sm-10 pt-2">          
+                            <input type="text" class="form-control customInput" id="lname" placeholder="Enter Last Name" name="lname" required>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-sm-10 pt-2">
+                            <input type="email" class="form-control customInput" id="email" placeholder="Enter email" name="email" required>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2 pt-2" for="comment">Comment:</label>
+                          <div class="col-sm-10">
+                            <textarea class="form-control customInput" rows="5" id="comment" name="comment" required></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group">        
+                          <div class="col-sm-offset-2 col-sm-10 pt-4 pb-2">
+                            <button class="btn btn-info" type="submit">Submit</button>
+                          </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
+      </div>
 
       <!--Footer-->
       <div class="container">
@@ -115,7 +117,7 @@
         </footer>
       </div>
 
-      <!--JavaScript-->
+    <!--JavaScript-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>

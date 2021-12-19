@@ -10,11 +10,18 @@
     <title>Contact Us</title>
 </head>
 <body>
+    <?php
+        session_start();
+        if(isset($_SESSION['customer'])) {
+            header("Location:index.php");
+        }
+    ?>
+
     <!--Navigation Bar-->
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand" href="index.html">
+              <a class="navbar-brand" href="index_login.php">
                 <img src="img/kerepek-r-us-logo.png" alt="Kerepek R Us Logo" width="80" height="80">
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,21 +30,22 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="index_login.php">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="about-us.html">About Us</a>
+                    <a class="nav-link" href="about-us_login.php">About Us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="product.php">Our Products</a>
+                    <a class="nav-link" href="product_login.php">Our Products</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="contact-us.html">Contact Us</a>
+                    <a class="nav-link active" aria-current="page" href="contact-us_login.php">Contact Us</a>
                   </li>
                 </ul>
-                <div style="color: white;" class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  Welcome, customer!
-                  </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a class="btn btn-primary me-md-2" href="register.php" role="button">Register</a>
+                    <a class="btn btn-secondary" href="login.php" role="button">Login</a>
+                </div>
               </div>
             </div>
           </nav>
