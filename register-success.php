@@ -44,6 +44,14 @@
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 customText">
 
                       <?php
+                      $sql="SELECT * FROM customer WHERE cust_email = '$email'";
+                      $result=$conn->query($sql);
+
+                      if($result->num_rows>0) {
+                         echo "Email already exist!";
+                         header("Refresh:3; url=register.php");
+                       } else {
+
                       if($password != $cPassword) {
                         echo "Password do not match!";
                         header("Refresh:3; url=register.php");
@@ -58,7 +66,8 @@
                       } else {
                     echo "Error: " .$sql. "<br>" . $conn->error;
                       }
-                      } 
+                    } 
+                    }
                       ?>
 
                       </p>
