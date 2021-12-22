@@ -58,7 +58,7 @@
       if(isset($_POST['createAdmin'])) {
         $servername="localhost";
         $username="root";
-        $password="RoxaR1234";
+        $password="";
         
         $dbase="kerepekdb";
         

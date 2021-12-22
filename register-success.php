@@ -24,7 +24,7 @@
                       <?php 
                       $servername="localhost";
                       $username="root";
-                      $password="RoxaR1234";
+                      $password="";
 
                       $dbase="kerepekdb";
  

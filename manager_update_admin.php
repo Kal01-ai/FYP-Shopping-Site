@@ -18,7 +18,7 @@
 
         $id = $_GET['updateid'];
 
-        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
+        $connect = mysqli_connect('localhost', 'root', '', 'kerepekdb');
         $query = "SELECT * FROM admin_log WHERE id = $id";
         $result = mysqli_query($connect, $query);
 
@@ -71,7 +71,7 @@
       if(isset($_POST['updateAdmin'])) {
         $servername="localhost";
         $username="root";
-        $password="RoxaR1234";
+        $password="";
         
         $dbase="kerepekdb";
         

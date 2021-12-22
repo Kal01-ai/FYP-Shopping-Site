@@ -43,7 +43,7 @@
                 </tr>
 
         <?php
-        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
+        $connect = mysqli_connect('localhost', 'root', '', 'kerepekdb');
         $query = 'SELECT * FROM customer ORDER BY id ASC';
         $result = mysqli_query($connect, $query);
 

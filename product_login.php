@@ -61,7 +61,7 @@
             <div class="row row-cols-1 row-cols-md-2 g-4">
 
         <?php
-        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
+        $connect = mysqli_connect('localhost', 'root', '', 'kerepekdb');
         $query = 'SELECT * FROM product ORDER BY id ASC';
         $result = mysqli_query($connect, $query);
 
