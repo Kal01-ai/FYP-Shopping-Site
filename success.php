@@ -14,7 +14,7 @@
         session_start();
         $email = $_SESSION['customer'];
 
-        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
+        $connect = mysqli_connect('localhost', 'root', '', 'kerepekdb');
         $query = "SELECT * FROM customer WHERE cust_email = '$email'";
         $result = mysqli_query($connect, $query);
 
@@ -39,7 +39,7 @@
             if(isset($_GET['payment'])) {
                 $servername="localhost";
                 $username="root";
-                $password="RoxaR1234";
+                $password="";
                 
                 $dbase="kerepekdb";
                 

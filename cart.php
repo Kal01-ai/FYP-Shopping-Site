@@ -121,7 +121,7 @@ function pre_r($array) {
     <div class="row row-cols-1 row-cols-md-3 g-4">
     <!--PHP Here-->
     <?php
-        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
+        $connect = mysqli_connect('localhost', 'root', '', 'kerepekdb');
         $query = 'SELECT * FROM product ORDER BY id ASC';
         $result = mysqli_query($connect, $query);
 

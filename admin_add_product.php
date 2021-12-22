@@ -77,7 +77,7 @@
       if(isset($_POST['addProduct'])) {
         $servername="localhost";
         $username="root";
-        $password="RoxaR1234";
+        $password="";
         
         $dbase="kerepekdb";
         

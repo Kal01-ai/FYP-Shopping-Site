@@ -18,7 +18,7 @@
 
         $id = $_GET['deleteid'];
 
-        $connect = mysqli_connect('localhost', 'root', 'RoxaR1234', 'kerepekdb');
+        $connect = mysqli_connect('localhost', 'root', '', 'kerepekdb');
         $query = "SELECT * FROM admin_log WHERE id = $id";
         $result = mysqli_query($connect, $query);
 
@@ -57,7 +57,7 @@
       if(isset($_POST['deleteAdmin'])) {
         $servername="localhost";
         $username="root";
-        $password="RoxaR1234";
+        $password="";
         
         $dbase="kerepekdb";
         
